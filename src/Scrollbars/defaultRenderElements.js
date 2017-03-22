@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable react/prop-types */
 
-export function renderViewDefault(props) {
+export function renderViewDefault({ scrollbarWidth, ...props }) { // eslint-disable-line no-unused-vars
     return <div {...props}/>;
 }
 

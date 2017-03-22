@@ -64,6 +64,7 @@ export default createClass({
             PropTypes.number,
             PropTypes.string
         ]),
+        alwaysRenderScrollbar: PropTypes.bool,
         universal: PropTypes.bool,
         style: PropTypes.object,
         children: PropTypes.node,
@@ -251,7 +252,7 @@ export default createClass({
         if (typeof document === 'undefined') return;
         const { view, trackHorizontal, trackVertical, thumbHorizontal, thumbVertical } = this.refs;
         view.addEventListener('scroll', this.handleScroll);
-        if (!this.getBrowserScrollbarWidth()) return;
+        if (!this.getBrowserScrollbarWidth() && !this.props.alwaysRenderScrollbar) return;
         trackHorizontal.addEventListener('mouseenter', this.handleTrackMouseEnter);
         trackHorizontal.addEventListener('mouseleave', this.handleTrackMouseLeave);
         trackHorizontal.addEventListener('mousedown', this.handleHorizontalTrackMouseDown);
@@ -268,7 +269,7 @@ export default createClass({
         if (typeof document === 'undefined') return;
         const { view, trackHorizontal, trackVertical, thumbHorizontal, thumbVertical } = this.refs;
         view.removeEventListener('scroll', this.handleScroll);
-        if (!this.getBrowserScrollbarWidth()) return;
+        if (!this.getBrowserScrollbarWidth() && !this.props.alwaysRenderScrollbar) return;
         trackHorizontal.removeEventListener('mouseenter', this.handleTrackMouseEnter);
         trackHorizontal.removeEventListener('mouseleave', this.handleTrackMouseLeave);
         trackHorizontal.removeEventListener('mousedown', this.handleHorizontalTrackMouseDown);
@@ -486,9 +487,9 @@ export default createClass({
     },
 
     _update(callback) {
-        const { onUpdate, hideTracksWhenNotNeeded } = this.props;
+        const { onUpdate, hideTracksWhenNotNeeded, alwaysRenderScrollbar } = this.props;
         const values = this.getValues();
-        if (this.getBrowserScrollbarWidth()) {
+        if (this.getBrowserScrollbarWidth() || alwaysRenderScrollbar) {
             const { thumbHorizontal, thumbVertical, trackHorizontal, trackVertical } = this.refs;
             const { scrollLeft, clientWidth, scrollWidth } = values;
             const trackHorizontalWidth = getInnerWidth(trackHorizontal);
@@ -551,6 +552,7 @@ export default createClass({
             autoHeightMax,
             style,
             children,
+            alwaysRenderScrollbar,
             ...props
         } = this.props;
         /* eslint-enable no-unused-vars */
@@ -570,8 +572,8 @@ export default createClass({
         const viewStyle = {
             ...viewStyleDefault,
             // Hide scrollbars by setting a negative margin
-            marginRight: scrollbarWidth ? -scrollbarWidth : 0,
-            marginBottom: scrollbarWidth ? -scrollbarWidth : 0,
+            marginRight: (scrollbarWidth ? -scrollbarWidth : 0),
+            marginBottom: (scrollbarWidth ? -scrollbarWidth : 0),
             ...(autoHeight && {
                 ...viewStyleAutoHeight,
                 // Add scrollbarWidth to autoHeight in order to compensate negative margins
@@ -599,7 +601,7 @@ export default createClass({
         const trackHorizontalStyle = {
             ...trackHorizontalStyleDefault,
             ...(autoHide && trackAutoHeightStyle),
-            ...((!scrollbarWidth || (universal && !didMountUniversal)) && {
+            ...(((!scrollbarWidth && !alwaysRenderScrollbar) || (universal && !didMountUniversal)) && {
                 display: 'none'
             })
         };
@@ -607,7 +609,7 @@ export default createClass({
         const trackVerticalStyle = {
             ...trackVerticalStyleDefault,
             ...(autoHide && trackAutoHeightStyle),
-            ...((!scrollbarWidth || (universal && !didMountUniversal)) && {
+            ...(((!scrollbarWidth && !alwaysRenderScrollbar) || (universal && !didMountUniversal)) && {
                 display: 'none'
             })
         };

@@ -1,6 +1,6 @@
 {
   "name": "react-custom-scrollbars-patched",
-  "version": "4.0.3",
+  "version": "4.0.6",
   "description": "React scrollbars component",
   "main": "lib/index.js",
   "typings": "index.d.ts",

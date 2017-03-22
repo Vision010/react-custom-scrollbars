@@ -31,6 +31,7 @@ If you don’t yet use [npm](http://npmjs.com/) or a modern module bundler, and 
 
 ## Change to original work
 - Adds `browserScrollbarWidth` prop to bypass native scrollbar width detection for consistent look across platforms.
+- Adds `alwaysRenderScrollbar` prop to force rendering the scrollbar
 
 ## Usage
 
