@@ -1,34 +1,40 @@
 react-custom-scrollbars
 =========================
 
-[![npm](https://img.shields.io/badge/npm-react--custom--scrollbars-brightgreen.svg?style=flat-square)]()
-[![npm version](https://img.shields.io/npm/v/react-custom-scrollbars.svg?style=flat-square)](https://www.npmjs.com/package/react-custom-scrollbars)
-[![npm downloads](https://img.shields.io/npm/dm/react-custom-scrollbars.svg?style=flat-square)](https://www.npmjs.com/package/react-custom-scrollbars)
+[![npm](https://img.shields.io/badge/npm-react--custom--scrollbars--patched-brightgreen.svg?style=flat-square)]()
+[![npm version](https://img.shields.io/npm/v/react-custom-scrollbars-patched.svg?style=flat-square)](https://www.npmjs.com/package/react-custom-scrollbars-patched)
+[![npm downloads](https://img.shields.io/npm/dm/react-custom-scrollbars-patched.svg?style=flat-square)](https://www.npmjs.com/package/react-custom-scrollbars-patched)
 
 * frictionless native browser scrolling
 * native scrollbars for mobile devices
-* [fully customizable](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/customization.md)
-* [auto hide](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/usage.md#auto-hide)
-* [auto height](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/usage.md#auto-height)
-* [universal](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/usage.md#universal-rendering) (runs on client & server)
+* [fully customizable](https://github.com/zxlin/react-custom-scrollbars/blob/master/docs/customization.md)
+* [auto hide](https://github.com/zxlin/react-custom-scrollbars/blob/master/docs/usage.md#auto-hide)
+* [auto height](https://github.com/zxlin/react-custom-scrollbars/blob/master/docs/usage.md#auto-height)
+* [universal](https://github.com/zxlin/react-custom-scrollbars/blob/master/docs/usage.md#universal-rendering) (runs on client & server)
 * `requestAnimationFrame` for 60fps
 * no extra stylesheets
 * well tested, 100% code coverage
 
-**[Demos](http://malte-wessel.github.io/react-custom-scrollbars/) · [Documentation](https://github.com/malte-wessel/react-custom-scrollbars/tree/master/docs)**
+**[Demos](http://malte-wessel.github.io/react-custom-scrollbars/) · [Documentation](https://github.com/zxlin/react-custom-scrollbars/tree/master/docs)**
 
 ## Installation
 ```bash
-npm install react-custom-scrollbars --save
+npm install react-custom-scrollbars-patched --save
 ```
 
 This assumes that you’re using [npm](http://npmjs.com/) package manager with a module bundler like [Webpack](http://webpack.github.io) or [Browserify](http://browserify.org/) to consume [CommonJS modules](http://webpack.github.io/docs/commonjs.html).
 
 If you don’t yet use [npm](http://npmjs.com/) or a modern module bundler, and would rather prefer a single-file [UMD](https://github.com/umdjs/umd) build that makes `ReactCustomScrollbars` available as a global object, you can grab a pre-built version from [unpkg](https://unpkg.com/react-custom-scrollbars@3.0.1/dist/react-custom-scrollbars.js). We *don’t* recommend this approach for any serious application, as most of the libraries complementary to `react-custom-scrollbars` are only available on [npm](http://npmjs.com/).
 
+## Original Author
+[Malte Wessel Repo](https://github.com/malte-wessel/react-custom-scrollbars/)
+
+## Change to original work
+- Adds `browserScrollbarWidth` prop to bypass native scrollbar width detection for consistent look across platforms.
+
 ## Usage
 
-This is the minimal configuration. [Check out the Documentation for advanced usage](https://github.com/malte-wessel/react-custom-scrollbars/tree/master/docs).
+This is the minimal configuration. [Check out the Documentation for advanced usage](https://github.com/zxlin/react-custom-scrollbars/tree/master/docs).
 
 ```javascript
 import { Scrollbars } from 'react-custom-scrollbars';
